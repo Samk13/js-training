@@ -1,7 +1,7 @@
 export function i18n(strings, ...vars) {
   // utilitaire basique d'internationalisation
   // TODO: remplacer chaque fragment de texte avec i18n.translate
-  console.log("🥎", arguments);
+  // console.log("🥎", strings);
   return strings.reduce(
     (lang, string, txt) => `${lang}${i18n.translate(string)}${vars[txt] || ""}`,
     ""
@@ -26,4 +26,4 @@ Object.assign(i18n, {
 const name = "Bob",
   nbMails = 3;
 
-console.log(i18n`Hello ${name}, you have ${nbMails} new mails.`);
+// console.log(i18n`Hello ${name}, you have ${nbMails} new mails.`);
