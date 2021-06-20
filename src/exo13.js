@@ -3,11 +3,13 @@
 export function promisify(fn) {
   // TODO: retourner une fonction appelant fn mais
   // retournant une Promise au lieu de passer un callback
+  return (...args) =>
+    new Promise((resolve, reject) => {
+      const response = (err, data) => {
+        return err ? reject(err) : resolve(data);
+      };
+      fn(response, ...args);
+    });
 }
 
 // exemple d'utilisation
-const wait = promisify(setTimeout);
-wait(1000)
-  .then(() => { console.log("1"); return wait(1000) })
-  .then(() => { console.log("2"); return wait(1000) })
-  .then(() => { console.log("3") });
